@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科技蓝主题加载页面</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#004080',
+                        accent: '#00aaff',
+                        light: '#f0f8ff',
+                        dark: '#001a33'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-shadow {
+                box-shadow: 0 10px 25px -5px rgba(0, 102, 204, 0.1), 0 10px 10px -5px rgba(0, 102, 204, 0.04);
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #0066cc 0%, #004080 100%);
+            }
+            .bg-grid {
+                background-image: radial-gradient(rgba(0, 102, 204, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+        }
+    </style>
+    <style>
+        /* 自定义加载动画 */
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(0, 102, 204, 0.1);
+            border-radius: 50%;
+            border-top-color: #0066cc;
+            animation: spin 1s linear infinite;
+            position: relative;
+        }
+        
+        .loader::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 6px solid transparent;
+            border-radius: 50%;
+            border-top-color: #00aaff;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 卡片悬停效果 */
+        .loading-card {
+            transition: all 0.3s ease;
+        }
+        
+        .loading-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 102, 204, 0.1), 0 10px 10px -5px rgba(0, 102, 204, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-light min-h-screen flex items-center justify-center bg-grid">
+    <!-- 卡片式加载容器 -->
+    <div class="loading-card bg-white rounded-2xl p-10 card-shadow max-w-md w-full mx-4">
+        <!-- 加载动画 -->
+        <div class="flex flex-col items-center justify-center">
+            <div class="loader mb-6"></div>
+            <h1 class="text-2xl font-bold text-primary mb-2 text-center">加载中</h1>
+            <p class="text-gray-500 text-center">请稍候，系统正在处理您的请求</p>
+        </div>
+        
+
+    </div>
+</body>
+</html>
