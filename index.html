@@ -7,7 +7,18 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
+<script>
+(function() {
+    var url = window.location.href;
+
+    if (url.indexOf('?') === -1) {
+        var randomParam = 'nocache=' + Date.now() + Math.floor(Math.random() * 1000);
+        var newUrl = url + '?' + randomParam;
+        window.location.replace(newUrl);
+    }
+})();
+</script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
